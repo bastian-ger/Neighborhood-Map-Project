@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Neighborhood Map Project</title>
+
+    <link href='css/style.css' rel='stylesheet'>
+    <link href='css/under500.css' rel='stylesheet' media='screen and (max-width:499px)'>
+  </head>
+<body>
+  <nav id='drawer' data-bind='css: { openSidenav : menuIsVisible }' class='sidenav'>
+    <input id='close-btn' data-bind='click: toggleSidenav' type='button' value='Close Menu'>
+    <h2>Filter churches:</h2>
+    <label>Architecture: </label>
+    <select id='architecture' data-bind='options: availableArchitectures, optionsCaption: "Select option",
+                                        value: selectedArchitecture, event: {change: filterArchitecture},
+                                        enable: enableArchitecture'>
+    </select>
+    <label>Century Built: </label>
+    <select id='centuryBuilt' data-bind='options: availableCenturies, optionsCaption: "Select option",
+                                        value: selectedCentury, optionsText: function(item) { return item + "th century"},
+                                        event: {change: filterCenturyBuilt}, enable: enableCentury'>
+    </select>
+    <input id='reset-btn' type ='button' data-bind='visible: showResetButton, click: resetList' value='RESET LIST'>
+    <ul id='list' data-bind='foreach: churchList'>
+      <li data-bind='text: name, click: $parent.showOneInfoWindow'></li>
+    </ul>
+  </nav>
+  <main id='main' data-bind='css: { openMain : menuIsVisible }'>
+    <div id='header'>
+      <input id='menu-btn' data-bind='click: toggleSidenav, visible: menuBtnIsVisible' type='button' value='Open Menu'>
+      <h1>Churches in Cologne (OPEN Menu to filter list)</h1>
+    </div>
+    <div id='map'></div>
+  </main>
+  <script
+    src='https://code.jquery.com/jquery-3.2.1.min.js'
+    integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
+    crossorigin='anonymous'></script>
+  <script src='js/knockout-3.4.2.js'></script>
+  <script src='js/model.js'></script>
+  <script src='js/app.js'></script>
+  <script async
+   src='https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&v=3&callback=initMap' onerror='mapsError()'>
+  </script>
+</body>
+</html>
