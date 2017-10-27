@@ -12,3 +12,6 @@ You can see information about these churches by either clicking on a marker on t
 
 ## Information that appears in the InfoWindows:
 The general information about the churches is from Wikipedia. The weather information is from OpenWeatherMap.
+
+## Important: Missing keys
+You need to insert your own google maps api key and OpenWeatherMap key in order to make the whole app work. Fill in your keys where you can read *YOUR-KEY-HERE* in index.html and app.js!
